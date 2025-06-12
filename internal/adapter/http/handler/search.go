@@ -44,7 +44,7 @@ func (h *Search) asyncProcessing(c *gin.Context, scanner *bufio.Scanner, words [
 			}
 		}
 		idx.Close()
-		fmt.Printf("Duration searching words: %d ms\n", duration.Milliseconds())
+		fmt.Printf("Duration searching words: %d ms. Your PC is shit, check your mother \n", duration.Milliseconds())
 	}()
 
 	// Return jobId operation
