@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "fd86a962-637a-43e0-a2dd-b6c79edabb85",
+		"name": "PetProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9830674"
+	},
+	"item": [
+		{
+			"name": "Search for words",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "words",
+							"value": "[\"tremendous\", \"with\", \"she\", \"likes\",\"penis\",\"go\",\"you\",\"nigger\",\"blood\",\"money\"]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/search/process",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"search",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get search ids",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/jobs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/jobs/d56e0ec9-fb40-4a73-9f51-c583a512aa57",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jobs",
+						"d56e0ec9-fb40-4a73-9f51-c583a512aa57"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
