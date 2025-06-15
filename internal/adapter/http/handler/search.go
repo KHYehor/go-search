@@ -37,6 +37,8 @@ func (h *Search) asyncProcessing(c *gin.Context, scanner *bufio.Scanner, words [
 
 		// Finish counting
 		duration := time.Since(start)
+		fmt.Printf("Search duration: %s\n", duration)
+
 		errs := h.j.SaveJobResult(c, id, duration.Milliseconds(), idx)
 		if len(errs) != 0 {
 			for _, err := range errs {
