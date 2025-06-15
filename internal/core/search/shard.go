@@ -8,7 +8,7 @@ import (
 
 type Input struct {
 	text []rune
-	line int
+	line uint32
 }
 
 type Shard struct {
@@ -42,7 +42,7 @@ func (sh *Shard) worker(wg *sync.WaitGroup, words [][]rune) {
 					i++
 					continue
 				}
-				position := model.Position{input.line, i + 1}
+				position := model.Position{input.line, uint32(i + 1)}
 				key := string(word)
 				if _, ok := sh.data[key]; !ok {
 					// Micro optimization

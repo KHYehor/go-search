@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"go-search/internal/model"
 	"runtime"
+	"runtime/debug"
 	"sync"
 )
 
@@ -65,7 +66,7 @@ func (idx *Index) Search(words []string) {
 		go idx.shards[i].worker(&wg, idx.words)
 	}
 
-	lineNum := 0
+	lineNum := uint32(0)
 	currentWorker := 0
 
 	for idx.scanner.Scan() {
@@ -100,9 +101,14 @@ func (idx *Index) Close() {
 	idx.res = nil
 	idx.scanner = nil
 
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+
 	// Force GC to return the memory back to OS
-	//runtime.GC()
-	//debug.FreeOSMemory()
+	if (m.HeapIdle-m.HeapReleased)/1024/1024 > 500 {
+		runtime.GC()
+		debug.FreeOSMemory()
+	}
 }
 
 func (idx *Index) mergeShards() map[string][]model.Position {

@@ -43,8 +43,9 @@ func (h *Search) asyncProcessing(c *gin.Context, scanner *bufio.Scanner, words [
 				fmt.Printf("error saving results: %s\n", err.Error())
 			}
 		}
+
+		// Destructor
 		idx.Close()
-		fmt.Printf("Duration searching words: %d ms\n", duration.Milliseconds())
 	}()
 
 	// Return jobId operation
@@ -58,6 +59,7 @@ func (h *Search) ProcessInput(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to parse multipart form"})
 		return
 	}
+
 	// Get words
 	rawWords := form.Value["words"]
 	var words []string

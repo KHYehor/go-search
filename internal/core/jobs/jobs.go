@@ -100,7 +100,10 @@ func (j *Jobs) SaveJobResult(c *gin.Context, id string, duration int64, idx Inde
 	wg.Add(2)
 
 	// Concurrent execution
+
+	// Dump result to the file
 	go j.saveToFile(&wg, errCh, id, idx)
+	// Can fail due to big output values
 	go j.saveToDb(c, &wg, errCh, id, duration, idx)
 
 	wg.Wait()

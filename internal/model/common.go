@@ -1,6 +1,6 @@
 package model
 
-type Position [2]int
+type Position [2]uint32
 
 type Progress struct {
 	Finished   []string `json:"Finished"`

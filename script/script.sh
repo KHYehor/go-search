@@ -1,23 +1,26 @@
 #!/bin/bash
 
-# Проверка наличия аргумента
+# Check an argumetn
 if [ -z "$1" ]; then
-  echo "Укажи путь к папке с .txt файлами"
-  echo "Пример: ./merge_txt.sh ./input"
+  echo "Specify the path to a txt"
+  echo "Example: ./merge_txt.sh ./input"
   exit 1
 fi
 
 INPUT_DIR="$1"
-OUTPUT_FILE="output-concat.txt"
+OUTPUT_FILE="output.txt"
 
-# Удалим старый выходной файл, если существует
+# Delete the previous file
 rm -f "$OUTPUT_FILE"
 
-# Объединение всех .txt файлов
-for file in "$INPUT_DIR"/*.txt; do
-  echo "Добавляю: $file"
-  cat "$file" >> "$OUTPUT_FILE"
-  echo "" >> "$OUTPUT_FILE" # Добавим перенос строки между файлами
+# Concat concated files
+for i in {1..5}; do
+  # Concat .txt files
+  for file in "$INPUT_DIR"/*.txt; do
+    echo "Concating: $file"
+    cat "$file" >> "$OUTPUT_FILE"
+    echo "" >> "$OUTPUT_FILE" # Add separate line between
+  done
 done
 
-echo "Готово. Все файлы объединены в: $OUTPUT_FILE"
+echo "Finished, check the output: $OUTPUT_FILE"
